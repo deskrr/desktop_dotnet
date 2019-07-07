@@ -53,7 +53,13 @@ namespace desktop_dotnet
                     {
                         image.Source = Imaging.CreateBitmapSourceFromHIcon(ico.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
                     }
+                    using (Bitmap b = this.monitor.getScreenshot())
+                    {
+                        BitmapImage img = this.BitmapToImageSource(b);
+                        ss.Source = img;
+                    }
                     this.getActivity(activeProcess).addTime(1);
+                    this.lastInput.Content = "Last Input: " + DateTime.Now.Subtract(this.monitor.GetLastInputTime()).Seconds;
                 } catch (Exception e)
                 {
                     activeProcess = "error";
@@ -83,6 +89,22 @@ namespace desktop_dotnet
             }
             return activity;
         }
+
+        BitmapImage BitmapToImageSource(Bitmap bitmap)
+{
+    using (MemoryStream memory = new MemoryStream())
+    {
+        bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+        memory.Position = 0;
+        BitmapImage bitmapimage = new BitmapImage();
+        bitmapimage.BeginInit();
+        bitmapimage.StreamSource = memory;
+        bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
+        bitmapimage.EndInit();
+
+        return bitmapimage;
+    }
+}
     }
 
     public class UserActivity : INotifyPropertyChanged

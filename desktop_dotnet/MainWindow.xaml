@@ -28,9 +28,14 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Grid.Column="1" x:Name="image" Panel.ZIndex="-5" Width="40" Height="40"></Image>
-            <Label x:Name="labl"></Label>
+        <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Grid.Column="1" x:Name="image" Panel.ZIndex="-5" Width="40" Height="40"></Image>
+                <Label x:Name="labl"></Label>
+            </StackPanel>
+            <Image Name="ss">
+            </Image>
+            <Label Name="lastInput"></Label>
         </StackPanel>
         <ScrollViewer  Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="1">
             <TextBlock x:Name="debugText" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
