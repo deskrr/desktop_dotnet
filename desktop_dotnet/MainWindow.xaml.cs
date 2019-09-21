@@ -48,7 +48,7 @@ namespace desktop_dotnet
                 await Task.Delay(1000);
                 try
                 {
-                    activeProcess = this.monitor.GetActiveProcessFileName();
+                    activeProcess = this.monitor.GetActiveProcessInfo();
                     using (Icon ico = this.monitor.getIcon(activeProcess))
                     {
                         image.Source = Imaging.CreateBitmapSourceFromHIcon(ico.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
